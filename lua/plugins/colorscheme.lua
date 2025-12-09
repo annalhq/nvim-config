@@ -7,6 +7,7 @@ return {
       end,
     },
   },
+
   {
     "catppuccin/nvim",
     name = "catppuccin",
@@ -15,6 +16,7 @@ return {
       no_italic = true,
       term_colors = true,
       transparent_background = false,
+
       styles = {
         comments = {},
         conditionals = {},
@@ -28,13 +30,15 @@ return {
         properties = {},
         types = {},
       },
+
       color_overrides = {
         mocha = {
-          base = "#000000",
-          mantle = "#000000",
+          base = "#11111b",
+          mantle = "#11111b",
           crust = "#000000",
         },
       },
+
       integrations = {
         telescope = {
           enabled = true,
@@ -47,6 +51,21 @@ return {
         treesitter = true,
         treesitter_context = true,
       },
+
+      custom_highlights = function(colors)
+        return {
+          FloatBorder = { bg = colors.mantle },
+        }
+      end,
     },
+  },
+  {
+    "akinsho/bufferline.nvim",
+    init = function()
+      local bufline = require("catppuccin.groups.integrations.bufferline")
+      function bufline.get()
+        return bufline.get_theme()
+      end
+    end,
   },
 }
